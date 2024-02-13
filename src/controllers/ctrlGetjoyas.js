@@ -1,9 +1,9 @@
 const db = require('../database/dbindex');
-const { selectPosts } = require('../database/querys/queryindex');
+const { selectJoyas } = require('../database/querys/queryindex');
 
 const getTodoJoyas = async (req, res) => {
 	try {
-		const { rowCount, rows } = await db.query(selectPosts);
+		const { rowCount, rows } = await db.query(selectJoyas);
 		if (rowCount > 0) {
 			res.status(200).json({
 				msg: 'Data fetch successfuly',

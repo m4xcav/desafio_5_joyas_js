@@ -6,6 +6,6 @@ const {
 const { getTodoJoyas } = ctrlGetJoyas;
 const { getJoyasFiltro } = ctrlGetFiltros;
 router.get('/get', ctrlGetJoyas);
-router.post('/filtros', crearPosts);
+router.post('/filtros/:id', crearPosts);
 
 module.exports = router;
