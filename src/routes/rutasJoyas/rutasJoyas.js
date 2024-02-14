@@ -7,7 +7,7 @@ const {
 const { getTodoJoyas } = ctrlGetJoyas;
 const { getJoyasFiltro } = ctrlGetFiltros;
 const { getjoyaid } = ctrlGetjoyaId; 
-router.get('/', getTodoJoyas);
+router.get('/filtros', getTodoJoyas);
 router.get('/joya/:id', getjoyaid);
 router.post('/filtros/:id', getJoyasFiltro);
 
