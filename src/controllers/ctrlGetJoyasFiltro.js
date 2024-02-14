@@ -2,7 +2,7 @@ const db = require('../database/dbindex');
 const { selectFiltros } = require('../database/querys/queryindex');
 
 const getJoyasFiltro = async (req, res) => {
-const filtro = req.params.id; 
+const filtro = req.query; 
 let query = '';
 switch(filtro){
     case filtro === undefined:

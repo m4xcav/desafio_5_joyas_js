@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const postsRouter = require('./rutasJoyas/rutasJoyas');
+const joyasRouter = require('./rutasJoyas/rutasJoyas');
 
-router.use('/joyas', postsRouter);
+router.use('/joyas', joyasRouter);
 
 module.exports = router;
