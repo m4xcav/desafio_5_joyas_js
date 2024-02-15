@@ -3,6 +3,7 @@ const { selectFiltros } = require('../database/querys/queryindex');
 
 const getJoyasFiltro = async (req, res) => {
 const { precio_min, precio_max, categoria, metal} = req.query; 
+console.log("los datos llegan como:  "+precio_min+", "+precio_max+", "+categoria+", "+metal+"FIN");
 const queryParams = [];
 
 let query = selectFiltros;
@@ -43,7 +44,8 @@ if (metal){
     queryParams.push(metal);
     query += ' AND metal = $' + queryParams.length;
 }
-
+console.log("el array de queryParams es:"+queryParams);
+console.log("la query es: "+query);
 try {
     const { rowCount, rows } = await db.query(query, queryParams);
     
