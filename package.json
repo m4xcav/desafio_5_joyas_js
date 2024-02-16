@@ -8,7 +8,7 @@
 		"start": "node index.js"
 	},
 	"keywords": [],
-	"author": "Maximo Cavero",
+	"author": "Maximo Cavero, Hendy Castro",
 	"license": "MIT",
 	"dependencies": {
 		"cors": "^2.8.5",

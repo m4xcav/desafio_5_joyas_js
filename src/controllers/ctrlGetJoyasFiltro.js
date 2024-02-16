@@ -4,6 +4,7 @@ const {getJoyasPorFiltros} = require('../controllers/ctrlFiltrosJoyas');
 
 const getJoyasFiltro = async (req, res) => {
 const { precio_min, precio_max, categoria, metal} = req.query; 
+console.log("los datos llegan como:  "+precio_min+", "+precio_max+", "+categoria+", "+metal+"FIN");
 const queryParams = [];
 
 let query = selectFiltros;
@@ -30,7 +31,6 @@ if (!metalesPermitidos.includes(metal)) {
     return res.status(400).json({ msg: 'El metal proporcionado no es válido' });
 
 }
-
 
 try {
     const joyasFiltradas = await getJoyasPorFiltros ({ precio_min,precio_max, categoria, metal});
