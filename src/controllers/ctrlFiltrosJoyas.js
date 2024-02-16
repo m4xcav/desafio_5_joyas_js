@@ -1,11 +1,13 @@
-const getJoyasPorFiltros = async ({ precio_min, precio_max, stock_min, metal }) => {
+const db = require('../database/dbindex');
+const getJoyasPorFiltros = async ({ precio_min, precio_max, categoria, metal }) => {
     let filtros = [];
     if (precio_min) filtros.push(`precio >= ${precio_min}`);
     if (precio_max) filtros.push(`precio <= ${precio_max}`);
-    if (stock_min) filtros.push(`stock >= ${stock_min}`);
+    if (categoria) filtros.push(`categoria >= '${categoria}'`);
     if (metal) filtros.push(`metal = '${metal}'`);
+    
 
-    let consulta = "SELECT * FROM joyas";
+    let consulta = "SELECT * FROM inventario";
     if (filtros.length > 0) {
         filtros = filtros.join(" AND ");
         consulta += ` WHERE ${filtros}`;
