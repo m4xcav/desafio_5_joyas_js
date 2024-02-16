@@ -1,8 +1,8 @@
-const getJoyasPorFiltros = async ({ precio_min, precio_max, stock_min, metal }) => {
+const getJoyasPorFiltros = async ({ precio_min, precio_max, categoria, metal }) => {
     let filtros = [];
     if (precio_min) filtros.push(`precio >= ${precio_min}`);
     if (precio_max) filtros.push(`precio <= ${precio_max}`);
-    if (stock_min) filtros.push(`stock >= ${stock_min}`);
+    if (stock_min) filtros.push(`stock >= ${categoria}`);
     if (metal) filtros.push(`metal = '${metal}'`);
 
     let consulta = "SELECT * FROM joyas";
