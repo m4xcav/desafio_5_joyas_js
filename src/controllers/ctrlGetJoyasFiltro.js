@@ -1,5 +1,6 @@
 const db = require('../database/dbindex');
 const { selectFiltros } = require('../database/querys/queryindex');
+const {getJoyasPorFiltros} = require('../controllers/ctrlFiltrosJoyas');
 
 const getJoyasFiltro = async (req, res) => {
 const { precio_min, precio_max, categoria, metal} = req.query; 
@@ -11,6 +12,11 @@ let query = selectFiltros;
 if (!precio_min || !precio_max || !categoria || !metal){
     return res.status(400).json({ msg: 'Faltan variables requeridas' });
 }
+
+const categoriasPermitidas = ['oro', 'plata', 'bronce', 'plomo'];
+    if (!categoriasPermitidas.includes(categoria)) {
+        return res.status(400).json({ msg: 'La categoria proporcionada no es válida' });
+    }
 
 if (isNaN(precio_min) || isNaN(precio_max) || parseFloat(precio_min) < 0 || parseFloat(precio_max) < 0) {
     return res.status(400).json({ msg: 'Los precios deben ser numeros positivos' });
@@ -45,15 +51,14 @@ if (metal){
 }
 
 try {
-    const { rowCount, rows } = await db.query(query, queryParams);
+    const joyasFiltradas = await getJoyasPorFiltros ({ precio_min,precio_max, categoria, metal});
     
-    if (rowCount > 0) {
-        res.status(200).json({
+    if (joyasFiltradas.length > 0) {
+        res.status(200).json({ 
             msg: 'Data fetch successfuly',
-            dataCount: rowCount,
-            data: rows,
+            dataCount: joyasFiltradas.length,
+            data: joyasFiltradas,
         });
-
     } else {
         res.status(200).json({
             msg: 'No data found',

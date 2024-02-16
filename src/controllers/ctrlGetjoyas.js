@@ -33,10 +33,6 @@ const getTodoJoyas = async (req, res) => {
         esValido = false;
     }
 
-    const categoriasPermitidas = ['oro', 'plata', 'bronce', 'plomo'];
-    if (categoria && !categoriasPermitidas.includes(categoria)) {
-        esValido = false;
-    }
 
     if (!esValido) {
         return res.status(400).json({
