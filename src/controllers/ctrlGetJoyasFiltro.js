@@ -13,7 +13,7 @@ if (!precio_min || !precio_max || !categoria || !metal){
     return res.status(400).json({ msg: 'Faltan variables requeridas' });
 }
 
-const categoriasPermitidas = ['oro', 'plata', 'bronce', 'plomo'];
+const categoriasPermitidas = ['aros', 'collar', 'anillo'];
     if (!categoriasPermitidas.includes(categoria)) {
         return res.status(400).json({ msg: 'La categoria proporcionada no es válida' });
     }
@@ -31,24 +31,6 @@ if (!metalesPermitidos.includes(metal)) {
 
 }
 
-if (precio_min){
-    queryParams.push(precio_min);
-    query += ' AND precio >= $' + queryParams.length;
-}
-if (precio_max){
-    queryParams.push(precio_max);
-    query += ' AND precio <= $' + queryParams.length;
-}
-
-if (categoria){
-    queryParams.push(categoria);
-    query += ' AND categoria = $' + queryParams.length;
-}
-
-if (metal){
-    queryParams.push(metal);
-    query += ' AND metal = $' + queryParams.length;
-}
 
 try {
     const joyasFiltradas = await getJoyasPorFiltros ({ precio_min,precio_max, categoria, metal});
